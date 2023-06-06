@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Al5xji6oU8M4+UwtrFvvuE2FTJf1yZXcJaUOMmd41h/wFAKzW4Ml+SjcZsfPoUHaHKENEbRC+fktraG7d+KsWA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\DenizDD\\source\\repos\\RapidApiExamples\\RapidApiExamples\\RapidApiExamples.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\DenizDD\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

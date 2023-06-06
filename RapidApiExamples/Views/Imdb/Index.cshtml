@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    int totalPages = (int)ViewData["TotalPages"];
+    int currentPage = (int)ViewData["CurrentPage"];
+    int pageSize = (int)ViewData["PageSize"];
+    List<ApiMovieViewModel> moviesPage = (List<ApiMovieViewModel>)ViewData["Movies"];
+}
+
+
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    <table class="table table-borderless">
+        <tr>
+            <td align="left">
+                @if (currentPage > 1)
+                {
+                    <a href="/imdb?page=@(currentPage - 1)">Previous</a>
+                }
+            </td>
+
+            <td align="center">
+                @for (int i = 1; i <= totalPages; i++)
+                {
+                    if (i == currentPage)
+                    {
+                        <strong> @i </strong>
+                    }
+                    else
+                    {
+                        <a href="/imdb?page=@i"> @i </a>
+                    }
+                }
+            </td>
+
+            <td align="right">
+                @if (currentPage < totalPages)
+                {
+                    <a href="/imdb?page=@(currentPage + 1)">Next</a>
+                }
+            </td>
+        </tr>
+    </table>
+    <table class="table table-bordered">
+        <tr>
+            <th>rank</th>
+            <th>title</th>
+            <th>rating</th>
+            <th>trailer</th>
+            <th>director</th>
+            <th>image</th>
+        </tr>
+        @foreach (var movie in moviesPage)
+        {
+        <tr>
+                <td>@movie.rank</td>
+                <td>@movie.title</td>
+                <td>@movie.rating</td>
+                <td><a href="@movie.trailer" class="btn btn-danger" target="_blank">Watch</a></td>
+            <td>
+                    @foreach (var directors in movie.director)
+                    {
+                       @directors;
+                    }
+            </td>
+                <td>
+                    <a href="@movie.image" data-bs-toggle="modal" data-bs-target="#exampleModal"><img src="@movie.image" width="100" height="150" /></a>
+                </td>
+        </tr>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">@movie.title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="text-align: center;">
+                            <img src="@movie.image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </table>
+    <br />
+</div>
+
+
+
+  
